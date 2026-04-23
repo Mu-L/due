@@ -68,8 +68,8 @@ func (p *provider) Broadcast(ctx context.Context, kind session.Kind, disconnect 
 }
 
 // 发布频道消息（异步）
-func (p *provider) Publish(ctx context.Context, channel string, disconnect bool, message []byte) int64 {
-	return 0
+func (p *provider) Publish(ctx context.Context, channel string, disconnect bool, message []byte) (total int64, err error) {
+	return
 }
 
 // Subscribe 订阅频道

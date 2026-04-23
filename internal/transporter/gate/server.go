@@ -196,12 +196,12 @@ func (s *Server) publish(conn *server.Conn, data []byte) error {
 		return err
 	}
 
-	total := s.provider.Publish(context.Background(), channel, disconnect, message)
+	total, err := s.provider.Publish(context.Background(), channel, disconnect, message)
 
 	if seq == 0 {
-		return nil
+		return err
 	} else {
-		return conn.Send(protocol.EncodePublishRes(seq, uint64(total)))
+		return conn.Send(protocol.EncodePublishRes(seq, codes.ErrorToCode(err), uint64(total)))
 	}
 }
 
