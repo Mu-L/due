@@ -224,12 +224,12 @@ func (c *Client) Publish(ctx context.Context, channel string, disconnect bool, m
 		}
 		defer res.Release()
 
-		total, err := protocol.DecodePublishRes(res.Bytes())
+		code, total, err := protocol.DecodePublishRes(res.Bytes())
 		if err != nil {
 			return 0, err
 		}
 
-		return int64(total), nil
+		return int64(total), codes.CodeToError(code)
 	} else {
 		return 0, c.cli.Send(ctx, protocol.EncodePublishReq(0, channel, disconnect, message))
 	}

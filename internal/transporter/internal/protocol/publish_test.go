@@ -47,18 +47,19 @@ func TestDecodePublishReq(t *testing.T) {
 }
 
 func TestEncodePublishRes(t *testing.T) {
-	buf := protocol.EncodePublishRes(1, 10)
+	buf := protocol.EncodePublishRes(1, 0, 1)
 
 	t.Log(buf.Bytes())
 }
 
 func TestDecodePublishRes(t *testing.T) {
-	buf := protocol.EncodePublishRes(1, 10)
+	buf := protocol.EncodePublishRes(1, 1)
 
-	total, err := protocol.DecodePublishRes(buf.Bytes())
+	code, total, err := protocol.DecodePublishRes(buf.Bytes())
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	t.Logf("code: %v", code)
 	t.Logf("total: %v", total)
 }

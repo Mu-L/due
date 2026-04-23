@@ -92,7 +92,7 @@ func (p *provider) Broadcast(ctx context.Context, kind session.Kind, disconnect 
 }
 
 // Publish 发布频道消息
-func (p *provider) Publish(ctx context.Context, channel string, disconnect bool, message []byte) int64 {
+func (p *provider) Publish(ctx context.Context, channel string, disconnect bool, message []byte) (int64, error) {
 	return p.gate.session.Publish(channel, disconnect, message)
 }
 

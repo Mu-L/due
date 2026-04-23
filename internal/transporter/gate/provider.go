@@ -27,7 +27,7 @@ type Provider interface {
 	// Broadcast 推送广播消息
 	Broadcast(ctx context.Context, kind session.Kind, disconnect bool, message []byte) (total int64, err error)
 	// Publish 发布频道消息
-	Publish(ctx context.Context, channel string, disconnect bool, message []byte) (total int64)
+	Publish(ctx context.Context, channel string, disconnect bool, message []byte) (total int64, err error)
 	// Subscribe 订阅频道
 	Subscribe(ctx context.Context, kind session.Kind, targets []int64, channel string) error
 	// Unsubscribe 取消订阅频道
